@@ -273,36 +273,49 @@ const usersData = [
       document.querySelector('.count-char').innerText = `Current characters:${length} and current words:${arrlength}`;
     }
   }
-  
   function sendMssg() {
     const inpMssg = document.querySelector(".inpMssg");
-    if (inpMssg.value === "") {
+    if (!inpMssg.value.trim()) {
       alert("Please Enter Some Text");
-    } else {
-      const arr = document.querySelectorAll(".user-list");
-      let index = 0;
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].className === "user-list active") {
-          index = i + 1;
-          break;
-        }
-      }
-      let name = `chat${index}`;
-      const newMssg = [{
-        from: { type: "user2" },
-        msg: { message: inpMssg.value },
-      }];
-      if (JsonData[name]) {
-        JsonData[name] = [...JsonData[name], ...newMssg];
-      } else {
-        JsonData[name] = newMssg;
-      }
-      AddChat(JsonData[name]);
-      inpMssg.value = "";
-      calc(document.querySelector('.inpMssg'));
+      return;
     }
-  }
   
+    const userList = document.querySelectorAll(".user-list");
+    let index = 0;
+    for (let i = 0; i < userList.length; i++) {
+      if (userList[i].classList.contains("active")) {
+        index = i + 1;
+        break;
+      }
+    }
+  
+    if (index === 0) {
+      alert("Please select a user to chat with");
+      return;
+    }
+  
+    const chatKey = `chat${index}`;
+    const newMessage = {
+      from: { type: "user2" },
+      msg: { message: inpMssg.value.trim() },
+    };
+  
+    // Update JsonData
+    if (JsonData[chatKey]) {
+      JsonData[chatKey].push(newMessage);
+    } else {
+      JsonData[chatKey] = [newMessage];
+    }
+  
+    // Update UI
+    const activeUser = usersData[index - 1];
+    UpdateChat([activeUser], JsonData[chatKey]); // Update both user and chat
+  
+    // Clear input and update counter
+    inpMssg.value = "";
+    calc(inpMssg);
+  }
+  document.querySelector(".send-btn").addEventListener("click", sendMssg);
   // Dark Mode Toggle
   const darkModeToggle = document.getElementById('darkModeToggle');
   darkModeToggle.addEventListener('change', () => {

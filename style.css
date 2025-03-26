@@ -197,7 +197,7 @@ header {
 }
 
 .chat-box {
-  height: calc(100vh - 180px);
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -219,7 +219,7 @@ header {
   border-bottom: 1px solid var(--border);
   background: var(--sidebar-bg);
   position: sticky;
-  top: 60px;
+  top: 20px;
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -347,7 +347,10 @@ header {
   cursor: pointer;
   transition: transform 0.2s, background 0.3s;
 }
-
+.send-btn-div:hover{
+  transform: translateY(-2px);
+  background: #008C99;
+}
 .send-btn:hover {
   transform: translateY(-2px);
   background: #008C99;
