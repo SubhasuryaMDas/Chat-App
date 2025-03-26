@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <title>Chatroom</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/e49327de27.js" crossorigin="anonymous"></script>
+    <script defer src="./app.js"></script>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="left">
+        <header class="chat-session-header">
+          <h4>CHAT SESSION</h4>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Menu
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <div class="dropdown-item">
+                <input type="text" placeholder="Search User" class="searchUser" oninput="serachUser(event)"/>
+              </div>
+              <div class="dropdown-item">
+                <select onchange="selectTheme(event)">
+                  <option>Change theme</option>
+                  <option value="#00A0AE">Default</option>
+                  <option value="#e74c3c">Red</option>
+                  <option value="#3498db">Blue</option>
+                  <option value="#2ecc71">Green</option>
+                  <option value="#f1c40f">Yellow</option>
+                </select>
+              </div>
+              <div class="dropdown-item">
+                <select onchange="changeBg(event)">
+                  <option>Change background</option>
+                  <option value="image1">Nature</option>
+                  <option value="image2">Abstract</option>
+                  <option value="image3">Minimal</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="userList"></div>
+      </div>
+      <div class="right">
+        <header>
+          <div class="back-btn" onclick="goBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </div>
+          <h4>CHAT DETAILS</h4>
+          <div><i class="fa-solid fa-x"></i></div>
+        </header>
+        <div class="chat-box">
+          <div class="current-user">
+            <div class="current-user-sub">
+              <div class="current_avatar">
+                <span>
+                  <img src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-942065100-copy.jpg?resize=1200:*" alt="John Mayers" />
+                  <div class="online"></div>
+                </span>
+              </div>
+              <div class="current_status">
+                <p class="current-title">John Mayers</p>
+                <p class="current-highlights">Accountant</p>
+              </div>
+            </div>
+          </div>
+          <div class="chat"></div>
+        </div>
+        <div class="mssg-box">
+          <span class="count-char">Current characters:0 and current words:0</span>
+          <div class="text-box">
+            <input type="text" placeholder="Type your message here..." oninput="calc(this)" class="inpMssg"/>
+            <div class="send-btn-div">
+              <button class="send-btn" onClick="sendMssg()">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <div class="dark-mode-toggle">
+        <input type="checkbox" id="darkModeToggle" class="toggle-checkbox">
+        <label for="darkModeToggle" class="toggle-label">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+          <span class="toggle-ball"></span>
+        </label>
+      </div>
+</body>
+</html>
